@@ -1,0 +1,31 @@
+#!/bin/bash
+# The purpose of this script is to provide a list of usernames and their Nextcloud UUIDs in the form of an array that you can iterate through for whatever purpose you'd like
+# This script is provided by ServerMatter and is done so with no warranty expressed or implied.  It is provided as-is. Use it at your own risk
+output=$(sudo -u www-data php /SM_DATA/web_cloud/public_html/occ user:list)
+# Split the output into lines
+IFS=$'\n' lines=($output)
+
+# Initialize associative array
+declare -A user_to_uuid
+
+# Process each line
+for line in "${lines[@]}"; do
+  # Split the line into UUID and username
+  IFS=":" read -r uuid username <<< "$line"
+
+  # Remove leading/trailing whitespace from username
+  username=$(echo $username | xargs)
+
+  # Remove leading/trailing whitespace from uuid
+  uuid=$(echo $uuid | xargs)
+
+  echo $username $uuid
+  # Add to associative array
+  user_to_uuid["$username"]=$uuid
+done
+
+# Loop over associative array for display purposes
+for username in "${!user_to_uuid[@]}"; do
+  uuid=${user_to_uuid["$username"]}
+  echo "$username > $uuid"
+done
