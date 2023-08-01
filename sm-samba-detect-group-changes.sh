@@ -1,4 +1,9 @@
 #!/bin/bash
+# detect if any group members have been added or removed and add shares to user if it has occurred
+# if no group changes found, it will not run anything further than that
+# use this bash script along with a cron job like the one shown here that runs every 5 minutes
+# */5 * * * * root sm-samba-detect-group-changes.sh 2>&1
+
 # samba domain admin password aka sdap
 sdap="whateveryoursisorpullfromelsewhere"
 
