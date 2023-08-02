@@ -1,0 +1,29 @@
+#!/bin/bash
+# Nextcloud / Owncloud do not appear to have a method of adding an admin privilege as discussed here:
+# https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/admin_delegation_configuration.html
+# via occ commands.  This script will do it directly.
+# WARNING: we do not know what darkness lurks through future NC updates and how this script will be effective.
+# we are currently using NC 25.09 and it worked for us there.
+
+#### check to see if that "authorized_group privilege" already exists so we do not add it twice
+query="SELECT COUNT(*) FROM oc_authorized_groups WHERE group_id='share-admins' AND class='OCA\\\\Settings\\\\Settings\\\\Admin\\\\Sharing';"
+# Run the query and get the result
+result=$(mysql -u $cloud_db_username -p$cloud_db_password web_cloud -s -N -e "${query}")
+if [ "${result}" -le 0 ]; then
+        # Get the maximum id from oc_authorized_groups
+        # Even though NC id field is auto_increment, we prefer to have granular control
+        query="SELECT MAX(id) FROM oc_authorized_groups;"
+        max_id=$(mysql -u $cloud_db_username -p$cloud_db_password web_cloud -s -N -e "${query}")
+        # Increment the max_id by 1
+        new_id=$((max_id + 1))
+
+        echo $new_id
+        # add the new Share privilege to this group
+
+        # Store the query in a variable
+        query="INSERT INTO oc_authorized_groups (id, group_id, class) VALUES ($new_id, 'share-admins', 'OCA\\Settings\\Settings\\Admin\\Sharing');"
+        # Print the query for debugging
+        echo "The query is: ${query}"
+        # Run the query
+        mysql -u $cloud_db_username -p$cloud_db_password web_cloud -e "${query}"
+fi
