@@ -1,5 +1,6 @@
 #!/bin/bash
-
+# (c) CompuMatter, LLC
+# no warranty expressed or implied - use as is.
 # The purpose of this script is to:
 ### Determine what shares are in /etc/samba/smb.conf
 ### Find groups with the same names (or can do string replace if a pattern change is required) and determine users who have access to them
