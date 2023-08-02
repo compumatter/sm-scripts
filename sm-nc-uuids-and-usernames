@@ -1,4 +1,6 @@
 #!/bin/bash
+# (c) CompuMatter, LLC
+# no warranty expressed or implied - use as is.
 # The purpose of this script is to provide a list of usernames and their Nextcloud UUIDs in the form of an array that you can iterate through for whatever purpose you'd like
 # This script is provided by ServerMatter and is done so with no warranty expressed or implied.  It is provided as-is. Use it at your own risk
 output=$(sudo -u www-data php /SM_DATA/web_cloud/public_html/occ user:list)
