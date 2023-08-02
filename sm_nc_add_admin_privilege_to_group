@@ -1,4 +1,6 @@
 #!/bin/bash
+# (c) CompuMatter, LLC
+# no warranty expressed or implied - use as is.
 # Nextcloud / Owncloud do not appear to have a method of adding an admin privilege as discussed here:
 # https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/admin_delegation_configuration.html
 # via occ commands.  This script will do it directly.
