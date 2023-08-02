@@ -1,4 +1,7 @@
 #!/bin/bash
+# (c) CompuMatter, LLC
+# no warranty expressed or implied - use as is.
+
 config_file="/etc/samba/smb.conf"
 
 # List of excluded shares
