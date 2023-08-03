@@ -9,6 +9,7 @@
 
 privilege_type="Sharing"
 share_admin_group_name="anygroupbeingappliedto"
+
 # check to see if that privilege is already added so we do not add it twice
 query="SELECT COUNT(*) FROM oc_authorized_groups WHERE group_id='$share_admin_group_name' AND class='OCA\\\\Settings\\\\Settings\\\\Admin\\\\$privilege_type';"
 result=$(mysql -u $db_username -p$db_password nc_db_name -s -N -e "${query}")
