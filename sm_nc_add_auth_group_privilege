@@ -1,3 +1,7 @@
+#!/bin/bash
+# (c) CompuMatter, LLC, ServerMatter
+# no warranty expressed or implied - use as is.
+# The purpose of this script is to:
 # NextCloud does not appear to have a built in occ command for adding Admin Right Privileges aka authorized group privileges as described here: 
 # https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/admin_delegation_configuration.html
 # Until they do, this script provides a way for you to do it directly on your NC database.
