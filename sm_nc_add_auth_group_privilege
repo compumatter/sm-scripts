@@ -7,6 +7,7 @@
 # Until they do, this script provides a way for you to do it directly on your NC database.
 # We have been using it and found it to cause no side effects and implement the solution advertised.  That said, this script is given freely and as-as whereis.
 
+# We are adding the privilege called 'Sharing' in this instance and the $share_admin_group_name can be any group you are trying to give that privilege to.
 privilege_type="Sharing"
 share_admin_group_name="anygroupbeingappliedto"
 
