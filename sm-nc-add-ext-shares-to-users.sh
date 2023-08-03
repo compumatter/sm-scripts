@@ -1,5 +1,5 @@
 #!/bin/bash
-# (c) CompuMatter, LLC
+# (c) CompuMatter, LLC, ServerMatter
 # no warranty expressed or implied - use as is.
 # The purpose of this script is to:
 ### Determine what shares are in /etc/samba/smb.conf
