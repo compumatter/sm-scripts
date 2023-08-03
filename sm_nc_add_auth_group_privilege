@@ -1,0 +1,28 @@
+# NextCloud does not appear to have a built in occ command for adding Admin Right Privileges aka authorized group privileges as described here: 
+# https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/admin_delegation_configuration.html
+# Until they do, this script provides a way for you to do it directly on your NC database.
+# We have been using it and found it to cause no side effects and implement the solution advertised.  That said, this script is given freely and as-as whereis.
+
+privilege_type="Sharing"
+share_admin_group_name="anygroupbeingappliedto"
+# check to see if that privilege is already added so we do not add it twice
+query="SELECT COUNT(*) FROM oc_authorized_groups WHERE group_id='$share_admin_group_name' AND class='OCA\\\\Settings\\\\Settings\\\\Admin\\\\$privilege_type';"
+result=$(mysql -u $db_username -p$db_password nc_db_name -s -N -e "${query}")
+# if it is not present, add the privilege group Sharing here now
+if [ "${result}" -le 0 ]; then
+        # Get the maximum id from oc_authorized_groups
+        # Even though NC id field is auto_increment, we prefer to have granular control
+        query="SELECT MAX(id) FROM oc_authorized_groups;"
+        max_id=$(mysql -u $db_username -p$db_password nc_db_name -s -N -e "${query}")
+        # Increment the max_id by 1
+        new_id=$((max_id + 1))
+#        echo $new_id
+        # add the new Share privilege to this group
+
+        # Store the query in a variable
+        query="INSERT INTO oc_authorized_groups (id, group_id, class) VALUES ($new_id, '$share_admin_group_name', 'OCA\\\\Settings\\\\Settings\\\\Admin\\\\$privilege_type');"
+        # Print the query for debugging
+        echo "The query is: ${query}"
+        # Run the query
+        mysql -u $db_username -p$db_password nc_db_name -e "${query}"
+fi
