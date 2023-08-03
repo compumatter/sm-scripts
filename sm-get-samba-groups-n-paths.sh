@@ -1,5 +1,5 @@
 #!/bin/bash
-# (c) CompuMatter, LLC
+# (c) CompuMatter, LLC, ServerMatter
 # no warranty expressed or implied - use as is.
 
 config_file="/etc/samba/smb.conf"
