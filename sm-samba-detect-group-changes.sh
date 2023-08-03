@@ -1,5 +1,5 @@
 #!/bin/bash
-# (c) CompuMatter, LLC
+# (c) CompuMatter, LLC, ServerMatter
 # no warranty expressed or implied - use as is.
 
 # detect if any group members have been added or removed and add shares to user if it has occurred
