@@ -1,4 +1,9 @@
 #!/bin/bash
+# (c) CompuMatter, LLC, ServerMatter
+# no warranty expressed or implied - use as is.
+# purpose of this script:
+# Can't use angryipscanner from a command line and haven't been able to find anything else that gives you what you're looking for?   
+# This nmap based bash script might just be what you're looking for. 
 if ! which nmap >/dev/null; then
     echo "nmap is not installed - this script requires it"
     echo "It can be installed with - apt install nmap"
